@@ -16,4 +16,6 @@
 
 ## 界面预览
 
+![image-20221107160757378](https://nnotes.oss-cn-hangzhou.aliyuncs.com/notes/image-20221107160757378.png)
+
 ![image-20221027105317979](https://nnotes.oss-cn-hangzhou.aliyuncs.com/notes/image-20221027105317979.png)
