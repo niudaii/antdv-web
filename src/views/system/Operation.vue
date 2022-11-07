@@ -129,7 +129,7 @@ export default {
         operator,
         path
       }
-      findOperationList(data).then((r) => {
+      findOperationList(data).then(r => {
         this.data = r.result.list
         this.pagination.total = r.result.total
       })

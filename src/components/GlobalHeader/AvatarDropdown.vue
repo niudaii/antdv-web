@@ -36,6 +36,7 @@
 <script>
 import { Modal } from 'ant-design-vue'
 import { changePassword } from '@/api/user'
+import md5 from 'md5'
 
 export default {
   name: 'AvatarDropdown',
@@ -63,8 +64,11 @@ export default {
   methods: {
     changePassword() {
       this.visible = false
-      changePassword(this.form).then((response) => {
-        this.$message.info(response.msg)
+      const data = {
+        password: md5(this.form.password)
+      }
+      changePassword(data).then(r => {
+        this.$message.info(r.msg)
       })
     },
     handleLogout(e) {

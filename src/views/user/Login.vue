@@ -97,8 +97,8 @@ export default {
       requiredTwoStepCaptcha: false,
       stepCaptchaVisible: false,
       form: this.$form.createForm(this),
-      picPath: null,
-      captchaId: null,
+      picPath: '',
+      captchaId: '',
       state: {
         time: 60,
         loginBtn: false,

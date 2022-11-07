@@ -109,7 +109,7 @@ export default {
     // crud
     addUser() {
       this.visible = false
-      addUser(this.form).then((r) => {
+      addUser(this.form).then(r => {
         this.$message.info(r.msg)
         this.findList()
       })
@@ -120,20 +120,20 @@ export default {
         page: current,
         pageSize
       }
-      findUserList(data).then((r) => {
+      findUserList(data).then(r => {
         this.data = r.result.list
         this.pagination.total = r.result.total
       })
     },
     resetPassword(uuid) {
       const data = { uuid }
-      resetPassword(data).then((r) => {
+      resetPassword(data).then(r => {
         this.$message.info(r.msg)
       })
     },
     deleteUser(uuid) {
       const data = { uuid }
-      deleteUser(data).then((r) => {
+      deleteUser(data).then(r => {
         this.$message.info(r.msg)
         this.findList()
       })
