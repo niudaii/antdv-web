@@ -1,8 +1,9 @@
 import storage from 'store'
 import expirePlugin from 'store/plugins/expire'
-import { login, getInfo, logout } from '@/api/login'
+import { getInfo } from '@/api/user'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import { welcome } from '@/utils/util'
+import { login, logout } from '@/api/base'
 
 storage.addPlugin(expirePlugin)
 const user = {

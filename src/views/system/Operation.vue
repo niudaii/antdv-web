@@ -43,11 +43,11 @@
 </template>
 
 <script>
-import { findOperationList } from '@/api/system'
+import { findOperationList } from '@/api/operation'
 import { formatUtcTime } from '@/utils/timeFormat'
 const columns = [
   {
-    title: '操作用户',
+    title: '用户',
     dataIndex: 'operator'
   },
   {
@@ -82,7 +82,7 @@ const columns = [
 ]
 export default {
   created() {
-    this.findList()
+    this.findOperationList()
   },
   data() {
     return {
@@ -92,8 +92,8 @@ export default {
         path: ''
       },
       // table
-      data: [],
       columns,
+      data: [],
       pagination: {
         total: 0,
         current: 1,
@@ -114,13 +114,13 @@ export default {
     changeTable(pagination, filters, sorter) {
       this.pagination.current = pagination.current
       this.pagination.pageSize = pagination.pageSize
-      this.findList()
+      this.findOperationList()
     },
     search() {
       this.pagination.current = 1
-      this.findList()
+      this.findOperationList()
     },
-    findList() {
+    findOperationList() {
       const { current, pageSize } = this.pagination
       const { operator, path } = this.form
       const data = {

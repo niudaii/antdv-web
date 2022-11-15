@@ -1,7 +1,7 @@
 <template>
   <div>
-    <a-button type="primary" icon="plus" @click="addClick" class="top">新增用户</a-button>
-    <a-modal :visible="visible" title="新增用户" @ok="addUser" @cancel="visible = false">
+    <a-button type="primary" icon="plus" @click="visible = true" class="top">新增用户</a-button>
+    <a-modal :visible="visible" title="新增用户" @ok="createUser" @cancel="visible = false">
       <a-form v-model="form" :labelCol="labelCol" :wrapperCol="wrapperCol">
         <a-form-item label="账户">
           <a-input v-model="form.username" placeholder="账户" />
@@ -31,7 +31,7 @@
           <a-button type="link" class="firstButton">删除</a-button>
         </a-popconfirm>
         <a-popconfirm title="确认要重置吗" ok-text="确定" cancel="取消" @confirm="resetPassword(record.uuid)">
-          <a-button type="link">重置</a-button>
+          <a-button type="link">重置密码</a-button>
         </a-popconfirm>
       </span>
     </a-table>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { addUser, deleteUser, findUserList, resetPassword } from '@/api/system'
+import { createUser, deleteUser, findUserList, resetPassword } from '@/api/user'
 const columns = [
   {
     title: '序号',
@@ -65,19 +65,22 @@ const columns = [
 ]
 export default {
   created() {
-    this.findList()
+    this.findUserList()
   },
   data() {
     return {
-      // visible
       visible: false,
       // form
       labelCol: { span: 6 },
       wrapperCol: { span: 15 },
-      form: {},
+      form: {
+        username: '',
+        password: '',
+        authorityId: '2'
+      },
       // table
-      data: [],
       columns,
+      data: [],
       pagination: {
         total: 0,
         current: 1,
@@ -95,26 +98,17 @@ export default {
     changeTable(pagination, filters, sorter) {
       this.pagination.current = pagination.current
       this.pagination.pageSize = pagination.pageSize
-      this.findList()
-    },
-    // button
-    addClick() {
-      this.visible = true
-      this.form = {
-        username: '',
-        password: '',
-        authorityId: '2'
-      }
+      this.findUserList()
     },
     // crud
-    addUser() {
+    createUser() {
       this.visible = false
-      addUser(this.form).then(r => {
+      createUser(this.form).then(r => {
         this.$message.info(r.msg)
-        this.findList()
+        this.findUserList()
       })
     },
-    findList() {
+    findUserList() {
       const { current, pageSize } = this.pagination
       const data = {
         page: current,
@@ -135,7 +129,7 @@ export default {
       const data = { uuid }
       deleteUser(data).then(r => {
         this.$message.info(r.msg)
-        this.findList()
+        this.findUserList()
       })
     }
   }

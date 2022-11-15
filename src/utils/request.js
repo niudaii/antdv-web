@@ -8,7 +8,7 @@ import { ACCESS_TOKEN } from '@/store/mutation-types'
 // 创建 axios 实例
 const request = axios.create({
   // API 请求的默认前缀
-  baseURL: window.PLATFROM_CONFIG.baseUrl,
+  baseURL: window.PLATFROM_CONFIG.baseUrl + 'api/v1',
   timeout: 10000 // 请求超时时间
 })
 
@@ -21,10 +21,14 @@ const errorHandler = (error) => {
     if (error.response.status === 403) {
       notification.error({
         message: 'Forbidden',
-        description: data.message
+        description: data.msg
       })
-    }
-    if (error.response.status === 401 && !(data.result && data.result.isLogin)) {
+    } else if (error.response.status === 400) {
+      notification.error({
+        message: 'Bad Request',
+        description: data.msg
+      })
+    } else if (error.response.status === 401 && !(data.result && data.result.isLogin)) {
       notification.error({
         message: 'Unauthorized',
         description: 'Authorization verification failed'

@@ -85,7 +85,7 @@
 import md5 from 'md5'
 import { mapActions } from 'vuex'
 import { timeFix } from '@/utils/util'
-import { captcha } from '@/api/login'
+import { captcha } from '@/api/base'
 
 export default {
   data() {
