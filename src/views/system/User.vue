@@ -119,17 +119,17 @@ export default {
         this.pagination.total = r.result.total
       })
     },
-    resetPassword(uuid) {
-      const data = { uuid }
-      resetPassword(data).then(r => {
-        this.$message.info(r.msg)
-      })
-    },
     deleteUser(uuid) {
       const data = { uuid }
       deleteUser(data).then(r => {
         this.$message.info(r.msg)
         this.findUserList()
+      })
+    },
+    resetPassword(uuid) {
+      const data = { uuid }
+      resetPassword(data).then(r => {
+        this.$message.info(r.msg)
       })
     }
   }
