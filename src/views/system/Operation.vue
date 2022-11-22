@@ -12,16 +12,16 @@
       </a-form-item>
     </a-form>
     <a-table
-      :data-source="data"
       :columns="columns"
+      :data-source="data"
       :pagination="pagination"
       :row-key="(record) => record.id"
       @change="changeTable"
     >
-      <span slot="createdAt" slot-scope="record">
-        {{ formatTime(record) }}
+      <span slot="createdAt" slot-scope="text">
+        {{ formatTime(text) }}
       </span>
-      <span slot="body" slot-scope="record">
+      <span slot="body" slot-scope="text, record">
         <a-popover title="请求" v-if="record.body !== ''">
           <template slot="content">
             <p>{{ record.body }}</p>
@@ -30,7 +30,7 @@
         </a-popover>
         <div v-else>空</div>
       </span>
-      <span slot="resp" slot-scope="record">
+      <span slot="resp" slot-scope="text, record">
         <a-popover title="响应">
           <template slot="content">
             <p>{{ record.resp }}</p>
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { findOperationList } from '@/api/operation'
+import { findOperationList } from '@/api/system'
 import { formatUtcTime } from '@/utils/timeFormat'
 const columns = [
   {

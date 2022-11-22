@@ -1,8 +1,12 @@
 import request from '@/utils/request'
 
+const systemApi = {
+  operations: '/operations'
+}
+
 export function findOperationList(data) {
   return request({
-    url: '/operations',
+    url: systemApi.operations,
     method: 'post',
     data: data
   })

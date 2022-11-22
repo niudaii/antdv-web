@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-button type="primary" icon="plus" @click="visible = true" class="top">新增用户</a-button>
+    <a-button class="top" type="primary" icon="plus" @click="visible = true">新增用户</a-button>
     <a-modal :visible="visible" title="新增用户" @ok="createUser" @cancel="visible = false">
       <a-form v-model="form" :labelCol="labelCol" :wrapperCol="wrapperCol">
         <a-form-item label="账户">
@@ -18,20 +18,20 @@
       </a-form>
     </a-modal>
     <a-table
-      :data-source="data"
       :columns="columns"
+      :data-source="data"
       :pagination="pagination"
       :row-key="(record) => record.uuid"
       @change="changeTable">
       <template slot="dataIndex" slot-scope="text, record, index">
         <span>{{ (pagination.current - 1) * pagination.pageSize + index + 1 }}</span>
       </template>
-      <span slot="operation" slot-scope="record">
+      <span slot="operation" slot-scope="text, record">
         <a-popconfirm title="确认要删除吗" ok-text="确定" cancel="取消" @confirm="deleteUser(record.uuid)">
-          <a-button type="link" class="firstButton">删除</a-button>
+          <a-button class="operationButton" type="link">删除</a-button>
         </a-popconfirm>
         <a-popconfirm title="确认要重置吗" ok-text="确定" cancel="取消" @confirm="resetPassword(record.uuid)">
-          <a-button type="link">重置密码</a-button>
+          <a-button class="operationButton" type="link">重置密码</a-button>
         </a-popconfirm>
       </span>
     </a-table>
@@ -64,9 +64,6 @@ const columns = [
   }
 ]
 export default {
-  created() {
-    this.findUserList()
-  },
   data() {
     return {
       visible: false,
@@ -93,14 +90,15 @@ export default {
       }
     }
   },
+  created() {
+    this.findUserList()
+  },
   methods: {
-    // table
     changeTable(pagination, filters, sorter) {
       this.pagination.current = pagination.current
       this.pagination.pageSize = pagination.pageSize
       this.findUserList()
     },
-    // crud
     createUser() {
       this.visible = false
       createUser(this.form).then(r => {
@@ -135,12 +133,12 @@ export default {
   }
 }
 </script>
-
 <style scoped>
 .top {
   margin-bottom: 20px;
 }
-.firstButton {
-  padding: 0;
+.operationButton {
+  padding-left: 0;
+  padding-right: 10px;
 }
 </style>
