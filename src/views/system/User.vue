@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-button class="top" type="primary" icon="plus" @click="visible = true">新增用户</a-button>
+    <a-button class="top" type="primary" @click="visible = true">新增用户</a-button>
     <a-modal :visible="visible" title="新增用户" @ok="createUser" @cancel="visible = false">
       <a-form v-model="form" :labelCol="labelCol" :wrapperCol="wrapperCol">
         <a-form-item label="账户">

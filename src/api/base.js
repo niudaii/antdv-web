@@ -1,14 +1,14 @@
 import request from '@/utils/request'
 
 const baseApi = {
-  Login: '/base/login',
-  Logout: '/base/logout',
-  Captcha: '/base/captcha'
+  login: '/base/login',
+  logout: '/base/logout',
+  captcha: '/base/captcha'
 }
 
 export function login (data) {
   return request({
-    url: baseApi.Login,
+    url: baseApi.login,
     method: 'post',
     data: data
   })
@@ -16,14 +16,14 @@ export function login (data) {
 
 export function logout () {
   return request({
-    url: baseApi.Logout,
+    url: baseApi.logout,
     method: 'get'
   })
 }
 
 export function captcha () {
   return request({
-    url: baseApi.Captcha,
+    url: baseApi.captcha,
     method: 'get'
   })
 }

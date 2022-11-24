@@ -2,8 +2,8 @@ import request from '@/utils/request'
 
 const userApi = {
   users: '/users',
-  info: '/user/info',
-  menu: '/user/menu',
+  userInfo: '/user/info',
+  userMenu: '/user/menu',
   createUser: '/user/create',
   deleteUser: '/user/delete',
   resetPassword: '/user/resetPassword',
@@ -12,14 +12,14 @@ const userApi = {
 
 export function getInfo () {
   return request({
-    url: userApi.info,
+    url: userApi.userInfo,
     method: 'get'
   })
 }
 
 export function getCurrentUserNav () {
   return request({
-    url: userApi.menu,
+    url: userApi.userMenu,
     method: 'get'
   })
 }
