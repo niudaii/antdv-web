@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 const userApi = {
-  users: '/users',
+  userList: '/user/list',
   userInfo: '/user/info',
   userMenu: '/user/menu',
   createUser: '/user/create',
@@ -58,7 +58,7 @@ export function deleteUser(data) {
 
 export function findUserList(data) {
   return request({
-    url: userApi.users,
+    url: userApi.userList,
     method: 'post',
     data: data
   })
